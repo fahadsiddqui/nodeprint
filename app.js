@@ -3,9 +3,7 @@ const PrinterTypes = require("node-thermal-printer").types;
 const express =  require('express');
 
 const app =  express();
-app.listen(8080,()=>{
-   console.log("listen 8080"); 
-});
+const port = process.env.PORT || 3000;
 
 app.get('/print',(req,res)=>{
     let printer = new ThermalPrinter({
@@ -25,4 +23,6 @@ app.get('/print',(req,res)=>{
         console.log("Print failed:", error);
     }
 })
-
+app.listen(port,()=>{
+       console.log("listen "+port); 
+});
